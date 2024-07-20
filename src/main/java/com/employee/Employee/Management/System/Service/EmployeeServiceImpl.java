@@ -39,4 +39,10 @@ public class EmployeeServiceImpl implements EmployeeService {
         existingEmployee.setDate_of_joining(employeeRequest.getDate_of_joining());
         return employeeDao.save(existingEmployee);
     }
+
+    public void removeEmployee(long employeeId) throws EmployeeNotFoundException {
+        Employee existingEmployee=employeeDao.findById(employeeId)
+                .orElseThrow(()->new EmployeeNotFoundException("Employee doesn't exist"));
+        employeeDao.delete(existingEmployee);
+    }
 }

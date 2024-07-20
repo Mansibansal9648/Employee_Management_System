@@ -9,6 +9,6 @@ import java.util.List;
 public interface EmployeeService {
     public Employee createNewEmployee(EmployeeRequest employeeRequest);
     public List<Employee> getAllEmployees();
-
     public Employee editEmployee(EmployeeRequest employeeRequest) throws EmployeeNotFoundException;
+    public void removeEmployee(long employeeId) throws EmployeeNotFoundException;
 }

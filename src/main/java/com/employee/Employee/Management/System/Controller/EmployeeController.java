@@ -35,4 +35,9 @@ public class EmployeeController {
     public Employee updateEmployee(@RequestBody @Valid EmployeeRequest employeeRequest) throws EmployeeNotFoundException {
         return employeeService.editEmployee(employeeRequest);
     }
+
+    @DeleteMapping("/api/delete-employee")
+    public void deleteEmployee(@RequestParam long employeeId) throws EmployeeNotFoundException {
+        employeeService.removeEmployee(employeeId);
+    }
 }
