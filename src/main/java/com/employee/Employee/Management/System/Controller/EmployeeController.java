@@ -1,7 +1,9 @@
 package com.employee.Employee.Management.System.Controller;
 
+import com.employee.Employee.Management.System.Dto.EmployeeRequest;
 import com.employee.Employee.Management.System.Entity.Employee;
 import com.employee.Employee.Management.System.Service.EmployeeService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,7 +22,7 @@ public class EmployeeController {
     }
 
     @PostMapping("/api/create-employee")
-    public Employee createEmployee(@RequestBody Employee employee){
-        return employeeService.createNewEmployee(employee);
+    public Employee createEmployee(@RequestBody @Valid EmployeeRequest employeeRequest){
+        return employeeService.createNewEmployee(employeeRequest);
     }
 }
