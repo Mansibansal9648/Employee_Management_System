@@ -6,6 +6,8 @@ import com.employee.Employee.Management.System.Entity.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
@@ -15,5 +17,10 @@ public class EmployeeServiceImpl implements EmployeeService {
     public Employee createNewEmployee(EmployeeRequest employeeRequest) {
         Employee employee=new Employee(employeeRequest);
         return employeeDao.save(employee);
+    }
+
+    @Override
+    public List<Employee> getAllEmployees() {
+        return employeeDao.findAll();
     }
 }

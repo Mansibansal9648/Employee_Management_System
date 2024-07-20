@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 public class EmployeeController {
 
@@ -24,5 +26,10 @@ public class EmployeeController {
     @PostMapping("/api/create-employee")
     public Employee createEmployee(@RequestBody @Valid EmployeeRequest employeeRequest){
         return employeeService.createNewEmployee(employeeRequest);
+    }
+
+    @GetMapping("/api/all-employees")
+    public List<Employee> getEmployees(){
+return employeeService.getAllEmployees();
     }
 }
