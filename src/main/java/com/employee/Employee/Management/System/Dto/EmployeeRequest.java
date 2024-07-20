@@ -15,6 +15,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class EmployeeRequest {
 
+    private long employeeId;
     @NotEmpty(message = "Name is required field")
     private String name;
     @Email(message = "Invalid email")
