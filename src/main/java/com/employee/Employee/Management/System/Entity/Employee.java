@@ -21,12 +21,12 @@ public class Employee {
 //    @Column(unique = true)
     private String email;
 //    @Column(unique = true)
-    private long phone;
+    private String phone;
     private String designation;
     private String department;
 
-    private int salary;
-    private LocalDate date_of_joining;
+    private String salary;
+    private String date_of_joining;
     private String password="Admin@123";
 
     public Employee(EmployeeRequest employeeRequest){
