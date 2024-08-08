@@ -29,14 +29,4 @@ public class Employee {
     private String date_of_joining;
     private String password="Admin@123";
 
-    public Employee(EmployeeRequest employeeRequest){
-        this.name=employeeRequest.getName();
-        this.email=employeeRequest.getEmail();
-        this.phone=employeeRequest.getPhone();
-        this.designation=employeeRequest.getDesignation();
-        this.department=employeeRequest.getDepartment();
-        this.salary=employeeRequest.getSalary();
-        this.date_of_joining=employeeRequest.getDate_of_joining();
-    }
-
 }

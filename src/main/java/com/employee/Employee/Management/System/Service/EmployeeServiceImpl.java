@@ -16,7 +16,14 @@ public class EmployeeServiceImpl implements EmployeeService {
     private EmployeeDao employeeDao;
     @Override
     public Employee createNewEmployee(EmployeeRequest employeeRequest) {
-        Employee employee=new Employee(employeeRequest);
+        Employee employee=new Employee();
+        employee.setName(employeeRequest.getName());
+        employee.setEmail(employeeRequest.getEmail());
+        employee.setPhone(employeeRequest.getPhone());
+        employee.setDesignation(employeeRequest.getDesignation());
+        employee.setDepartment(employeeRequest.getDepartment());
+        employee.setSalary(employeeRequest.getSalary());
+        employee.setDate_of_joining(employeeRequest.getDate_of_joining());
         return employeeDao.save(employee);
     }
 
