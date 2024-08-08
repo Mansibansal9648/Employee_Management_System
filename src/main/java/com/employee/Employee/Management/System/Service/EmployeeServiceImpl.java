@@ -24,6 +24,22 @@ public class EmployeeServiceImpl implements EmployeeService {
         employee.setDepartment(employeeRequest.getDepartment());
         employee.setSalary(employeeRequest.getSalary());
         employee.setDate_of_joining(employeeRequest.getDate_of_joining());
+
+        boolean isEmail= employeeDao.existsByEmail(employee.getEmail());
+        boolean isPhone=employeeDao.existsByPhone(employee.getPhone());
+
+        if(isEmail && isPhone){
+            throw new IllegalArgumentException("Email and Phone no already exists");
+        }
+
+        if(isEmail){
+            throw new IllegalArgumentException("Email already exists");
+        }
+
+        if(isPhone){
+            throw new IllegalArgumentException("Phone no already exists");
+        }
+
         return employeeDao.save(employee);
     }
 
