@@ -43,7 +43,7 @@ public class EmployeeRequest {
     private String salary;
 
     @NotEmpty(message = "Date of joining is required field")
-    @Pattern(regexp = "^\\d{4}-\\d{2}-\\d{2}$",message = "Date of joining must be in the format yyyy-mm-dd")
+    @Pattern(regexp = "^\\d{4}-\\d{2}-\\d{2}$",message = "Date of joining must be in the format yyyy-MM-dd")
     @ValidateDateOfJoining(message = "Date of joining should not be in future")
     private String date_of_joining;
 //    private String password="Admin@123";

@@ -18,6 +18,9 @@ public class DateOfJoiningValidator implements ConstraintValidator<ValidateDateO
 
     @Override
     public boolean isValid(String dateOfJoining , ConstraintValidatorContext constraintValidatorContext) {
+        if (dateOfJoining == null || !dateOfJoining.matches("^\\d{4}-\\d{2}-\\d{2}$")) {
+            return true; // Skip validation if the pattern doesn't match
+        }
         LocalDate doj = LocalDate.parse(dateOfJoining, dateFormatter);
         LocalDate currentDate = LocalDate.now();
 //      if(doj>currentDate){
