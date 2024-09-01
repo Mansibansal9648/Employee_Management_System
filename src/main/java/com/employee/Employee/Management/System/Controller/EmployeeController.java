@@ -1,12 +1,15 @@
 package com.employee.Employee.Management.System.Controller;
 
+import com.employee.Employee.Management.System.CustomResponse.ApiResponsePagination;
 import com.employee.Employee.Management.System.CustomResponse.ApiResponseSuccess;
+import com.employee.Employee.Management.System.CustomResponse.PaginationInfo;
 import com.employee.Employee.Management.System.Dto.EmployeeRequest;
 import com.employee.Employee.Management.System.Entity.Employee;
 import com.employee.Employee.Management.System.Exception.EmployeeNotFoundException;
 import com.employee.Employee.Management.System.Service.EmployeeService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -36,11 +39,23 @@ public class EmployeeController {
     }
 
     @GetMapping("/api/all-employees")
-    public ResponseEntity<ApiResponseSuccess<List<Employee>>> getEmployees(){
-        List<Employee> allEmployees = employeeService.getAllEmployees();
-        ApiResponseSuccess<List<Employee>> response = new ApiResponseSuccess<>(allEmployees, true, HttpStatus.OK.value(),"Employee getting from DB successfully");
+    public ResponseEntity<ApiResponsePagination<List<Employee>>> getEmployees( @RequestParam(defaultValue = "1") int page,
+        @RequestParam(defaultValue = "10") int limit){
+//        List<Employee> allEmployees = employeeService.getAllEmployees();
+        Page<Employee> allEmployees = employeeService.getAllEmployees(page, limit);
+        PaginationInfo paginationInfo = new PaginationInfo(
+                page ,  // Adjusting page number for user-friendly display
+                allEmployees.getTotalPages(),
+                allEmployees.getTotalElements()
+        );
+        ApiResponsePagination<List<Employee>> response = new ApiResponsePagination<>(allEmployees.getContent(), true, HttpStatus.OK.value(),"Employee getting from DB successfully",paginationInfo);
         return new ResponseEntity<>(response, HttpStatus.OK);
 //        return ResponseEntity.status(HttpStatus.OK).body(allEmployees);
+//        List<Employee> allEmployees = employeeService.getAllEmployees();
+//        ApiResponseSuccess<List<Employee>> response = new ApiResponseSuccess<>(allEmployees, true, HttpStatus.OK.value(), "Employee getting from DB successfully");
+//        return new ResponseEntity<>(response, HttpStatus.OK);
+//        return ResponseEntity.status(HttpStatus.OK).body(allEmployees);
+
     }
 
     @PutMapping("/api/edit-employee")
