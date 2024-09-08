@@ -18,6 +18,11 @@ public class AdminServiceImpl implements AdminService{
         admin.setUserType(adminRequest.getUserType());
         admin.setPassword(adminRequest.getPassword());
 
+        boolean isEmail= adminDao.existsByEmail(admin.getEmail());
+
+        if(isEmail){
+            throw new IllegalArgumentException("Email already exists");
+        }
         return adminDao.save(admin);
     }
 }
