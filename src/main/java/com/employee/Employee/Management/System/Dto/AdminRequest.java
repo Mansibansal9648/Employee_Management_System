@@ -1,5 +1,6 @@
 package com.employee.Employee.Management.System.Dto;
 
+import com.employee.Employee.Management.System.CustomValidation.ValidateUserType;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
@@ -21,6 +22,7 @@ public class AdminRequest {
     private String email;
 
     @NotEmpty(message = "User type is required field")
+    @ValidateUserType(message = "User type must be a Admin")
     private String userType;
 
     @NotEmpty(message = "Password is required field")
